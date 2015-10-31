@@ -11,12 +11,15 @@ public abstract class SectionedAdapter extends RecyclerView.Adapter<BaseViewHold
         int sectionCount = getSectionCount();
         for (int section = 0 ; section < sectionCount ; ++section) {
             if (position == 0) {
+                holder.mSection = section;
                 onBindSectionHeaderViewHolder(holder, section);
                 return;
             }
             --position;
             int itemCount = getItemCount(section);
             if (position < itemCount) {
+                holder.mSection = section;
+                holder.mPositionInSection = position;
                 onBindViewHolder(holder, section, position);
                 return;
             }
